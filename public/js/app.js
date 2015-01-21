@@ -3,8 +3,13 @@ var NewStatusView = require("./Views/NewStatusView");
 var StatusesView = require("./Views/StatusesView");
 jQuery(function ($) {
     var statuses = new Statuses();
-    new NewStatusView({statuses: statuses});
-    new StatusesView();
+    new NewStatusView({
+        el: $('#js-new-status'),
+        statuses: statuses
+    });
+    new StatusesView({
+        el: $('#statuses')
+    });
     statuses.fetchList({
         success: function (data) {
             var $statuses = $('#statuses');

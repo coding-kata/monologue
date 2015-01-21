@@ -9,7 +9,8 @@ function NewStatusView(options) {
     var that = this;
     this.statuses = options.statuses;
     emitter.on(action.STATUS_ADD, this.clearInput, this);
-    $('#js-new-status').on('submit', function (event) {
+    this.el = options.el;
+    this.el.on('submit', function (event) {
         event.preventDefault();
         that.addStatus(event);
     });
@@ -17,14 +18,14 @@ function NewStatusView(options) {
 NewStatusView.prototype.addStatus = function (event) {
     var that = this;
     this.statuses.add({
-        text: $(event.target).find("textarea").val(),
+        text: that.el.find("textarea").val(),
         success: function (data) {
             emitter.trigger(action.STATUS_ADD, data.text);
         }
     });
 };
 NewStatusView.prototype.clearInput = function clearInput() {
-    $('#js-new-status').val("");
+    this.el.val("");
 };
 
 module.exports = NewStatusView;
