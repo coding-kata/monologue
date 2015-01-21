@@ -19,10 +19,9 @@ Statuses.prototype.add = function (options) {
     });
 };
 
-
-jQuery(function ($) {
-    var statuses = new Statuses();
-    $('form').on('submit', function (event) {
+function NewStatusView(options) {
+    var statuses = options.statuses;
+    $('#js-new-status').on('submit', function (event) {
         event.preventDefault();
         statuses.add({
             text: $(event.target).find("textarea").val(),
@@ -31,7 +30,12 @@ jQuery(function ($) {
             }
         });
     });
+}
 
+jQuery(function ($) {
+    var statuses = new Statuses();
+
+    new NewStatusView({statuses: statuses});
     statuses.fetchList({
         success: function (data) {
             var $statuses = $('#statuses');
