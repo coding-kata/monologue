@@ -1,9 +1,10 @@
 // LICENSE : MIT
 "use strict";
-var emitter = _.clone(Backbone.Events);
-var action = {
-    STATUS_ADD: "status:add"
-};
+/**
+ * @type {Backbone.Events}
+ */
+var emitter = require("../Dispatcher/status-dispatcher");
+var action = require("../Constants/status-constant");
 function NewStatusView(options) {
     var that = this;
     this.statuses = options.statuses;
