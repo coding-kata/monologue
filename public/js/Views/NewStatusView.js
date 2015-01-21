@@ -8,9 +8,7 @@ var action = require("../Constants/status-constant");
 function NewStatusView(options) {
     var that = this;
     this.statuses = options.statuses;
-    emitter.on(action.STATUS_ADD, this.appendStatus, this);
     emitter.on(action.STATUS_ADD, this.clearInput, this);
-
     $('#js-new-status').on('submit', function (event) {
         event.preventDefault();
         that.addStatus(event);
@@ -24,9 +22,6 @@ NewStatusView.prototype.addStatus = function (event) {
             emitter.trigger(action.STATUS_ADD, data.text);
         }
     });
-};
-NewStatusView.prototype.appendStatus = function appendStatus(text) {
-    $('#statuses').append('<li>' + text + '</li>');
 };
 NewStatusView.prototype.clearInput = function clearInput() {
     $('#js-new-status').val("");
