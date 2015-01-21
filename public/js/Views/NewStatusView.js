@@ -8,9 +8,9 @@ var action = require("../Constants/status-constant");
 var NewStatusView = Backbone.View.extend({
     initialize: function (options) {
         var that = this;
+        this.el = options.el;
         this.statuses = options.statuses;
         emitter.on(action.STATUS_ADD, this.clearInput, this);
-        this.el = options.el;
         this.el.on('submit', function (event) {
             event.preventDefault();
             that.addStatus(event);
