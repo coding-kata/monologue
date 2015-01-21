@@ -1,14 +1,15 @@
-var Statuses = require("./Models/Statuses");
+var StatusList = require("./Models/StatusCollection");
 var NewStatusView = require("./Views/NewStatusView");
 var StatusesView = require("./Views/StatusesView");
 jQuery(function ($) {
-    var statuses = new Statuses();
+    var statuses = new StatusList();
     new NewStatusView({
         el: $('#js-new-status'),
-        statuses: statuses
+        collection: statuses
     });
     new StatusesView({
-        el: $('#statuses')
+        el: $('#statuses'),
+        collection: statuses
     });
     statuses.fetchList({
         success: function (data) {

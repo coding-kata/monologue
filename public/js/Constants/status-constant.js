@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
 var action = {
-    STATUS_ADD: "status:add"
+    STATUS_ADD: "add"
 };
 module.exports = action;
