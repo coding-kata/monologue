@@ -1,8 +1,15 @@
 // LICENSE : MIT
 "use strict";
+var emitter = _.clone(Backbone.Events);
+var action = {
+    STATUS_ADD: "status:add"
+};
 function NewStatusView(options) {
     var that = this;
     this.statuses = options.statuses;
+    emitter.on(action.STATUS_ADD, this.appendStatus, this);
+    emitter.on(action.STATUS_ADD, this.clearInput, this);
+
     $('#js-new-status').on('submit', function (event) {
         event.preventDefault();
         that.addStatus(event);
@@ -13,8 +20,7 @@ NewStatusView.prototype.addStatus = function (event) {
     this.statuses.add({
         text: $(event.target).find("textarea").val(),
         success: function (data) {
-            that.appendStatus(data.text);
-            that.clearInput();
+            emitter.trigger(action.STATUS_ADD, data.text);
         }
     });
 };

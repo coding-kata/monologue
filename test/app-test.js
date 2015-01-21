@@ -5,6 +5,12 @@ var injectBrowser = require('testium/mocha');
 var pageObjects = require("./app-page-object");
 describe("app-test", function () {
     before(injectBrowser());
+    after(function () {
+        var logs = browser.getConsoleLogs();
+        if (logs.length > 0) {
+            console.log(logs);
+        }
+    });
     var browser;
     beforeEach(function () {
         browser = this.browser;
