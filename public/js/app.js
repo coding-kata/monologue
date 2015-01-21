@@ -20,18 +20,21 @@ Statuses.prototype.add = function (options) {
 };
 
 function NewStatusView(options) {
-    var statuses = options.statuses;
+    var that = this;
+    this.statuses = options.statuses;
     $('#js-new-status').on('submit', function (event) {
         event.preventDefault();
-        statuses.add({
-            text: $(event.target).find("textarea").val(),
-            success: function (data) {
-                $('#statuses').append('<li>' + data.text + '</li>');
-            }
-        });
+        that.addStatus(event);
     });
 }
-
+NewStatusView.prototype.addStatus = function (event) {
+    this.statuses.add({
+        text: $(event.target).find("textarea").val(),
+        success: function (data) {
+            $('#statuses').append('<li>' + data.text + '</li>');
+        }
+    });
+};
 jQuery(function ($) {
     var statuses = new Statuses();
 
