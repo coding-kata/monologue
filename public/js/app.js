@@ -28,13 +28,22 @@ function NewStatusView(options) {
     });
 }
 NewStatusView.prototype.addStatus = function (event) {
+    var that = this;
     this.statuses.add({
         text: $(event.target).find("textarea").val(),
         success: function (data) {
-            $('#statuses').append('<li>' + data.text + '</li>');
+            that.appendStatus(data.text);
+            that.clearInput();
         }
     });
 };
+NewStatusView.prototype.appendStatus = function appendStatus(text) {
+    $('#statuses').append('<li>' + text + '</li>');
+};
+NewStatusView.prototype.clearInput = function clearInput() {
+    $('#js-new-status').val("");
+};
+
 jQuery(function ($) {
     var statuses = new Statuses();
 
