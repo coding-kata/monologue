@@ -2,7 +2,7 @@
 
 This is a fork of [bkeepers/monologue](https://github.com/bkeepers/monologue "bkeepers/monologue").
 
-Alternative [code kata](http://en.wikipedia.org/wiki/Kata_(programming) "code kata") (aka. Refactoring).
+I start refactoring from scratch(aka. [code kata](http://en.wikipedia.org/wiki/Kata_(programming) "code kata")).
 
 ![gif](http://gyazo.com/89e422b7c9acefad538be1ab6806a5d1.gif)
 
