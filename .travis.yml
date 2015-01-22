@@ -2,4 +2,6 @@ sudo: false
 language: node_js
 node_js:
 - '0.10'
-before_script: npm run build
+before_script:
+  - npm run build
+  - bundle

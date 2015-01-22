@@ -1,4 +1,4 @@
-# monologue
+# monologue [![Build Status](https://travis-ci.org/coding-kata/monologue.svg?branch=master)](https://travis-ci.org/coding-kata/monologue)
 
 This is a fork of [bkeepers/monologue](https://github.com/bkeepers/monologue "bkeepers/monologue").
 
