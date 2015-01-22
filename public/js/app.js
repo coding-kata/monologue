@@ -1,25 +1,22 @@
-jQuery(function($) {
-  $('form').on('submit', function() {
-    $.ajax({
-      url: '/statuses',
-      type: 'POST',
-      dataType: 'json',
-      data: {text: $(this).find('textarea').val()},
-      success: function(data) {
-        $('#statuses').append('<li>' + data.text + '</li>');
-      }
+var StatusList = require("./Models/StatusCollection");
+var NewStatusView = require("./Views/NewStatusView");
+var StatusesView = require("./Views/StatusesView");
+jQuery(function ($) {
+    var statuses = new StatusList();
+    new NewStatusView({
+        el: $('#js-new-status'),
+        collection: statuses
     });
-    return false;
-  });
-
-  $.ajax({
-    url: '/statuses',
-    dataType: 'json',
-    success: function(data) {
-      var $statuses = $('#statuses');
-      for(var i = 0; data.length > i; i++) {
-        $statuses.append('<li>' + data[i].text + '</li>');
-      }
-    }
-  })
+    new StatusesView({
+        el: $('#statuses'),
+        collection: statuses
+    });
+    statuses.fetchList({
+        success: function (data) {
+            var $statuses = $('#statuses');
+            for (var i = 0; data.length > i; i++) {
+                $statuses.append('<li>' + data[i].text + '</li>');
+            }
+        }
+    });
 });
